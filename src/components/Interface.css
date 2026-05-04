@@ -1,0 +1,70 @@
+.interface-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    pointer-events: none;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 30px 0;
+    align-items: center;
+    z-index: 10;
+    box-sizing: border-box;
+}
+
+.title-360 {
+    color: #0146C7;
+    font-size: 34px;
+    font-weight: bold;
+    pointer-events: auto;
+}
+
+.title-info {
+    color: #0146C7;
+    font-size: 42px;
+    font-weight: 800;
+    margin-top: 20px;
+    letter-spacing: 1px;
+    text-align: center;
+    pointer-events: auto;
+}
+
+.button-group {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    pointer-events: auto;
+}
+
+.btn {
+    border-radius: 30px;
+    padding: 12px 30px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 18px;
+    font-weight: 600;
+    cursor: pointer;
+
+    background-color: #F2F6FF;
+    border: 2px solid #0146C7;
+    color: #0146C7;
+
+    transition: all 0.3s ease;
+
+}
+
+.btn:hover {
+    background-color: #FFD700;
+    border: 2px solid #FFD700;
+    color: #FFF;
+    transform: translateY(-2px);
+}
+
+.btn.active{
+    background-color: #FFD700;
+    border: 2px solid #FFD700;
+    color: #FFF;
+}
