@@ -15,9 +15,9 @@ const PUNTOS_INTERACTIVOS = [
     { id: 11, nombre: 'POI_Tren' },
 ]
 
-export default function Avion() {
+export default function Avion( { setPuntoSeleccionado, puntoSeleccionado } ) {
 
-    const { scene } = useGLTF('/airplane3.glb')
+    const { scene } = useGLTF('/airplane4.glb')
     const [puntosOcultos, setPuntosOcultos] = useState({})
 
     useEffect(() => {
@@ -43,6 +43,7 @@ export default function Avion() {
             {PUNTOS_INTERACTIVOS.map(({ id, nombre }) => {
                 const punto = scene.getObjectByName(nombre)
                 const estaOculto = puntosOcultos[id]
+                const estaSeleccionado = puntoSeleccionado === id
 
                 if (!punto) return null
 
@@ -67,7 +68,9 @@ export default function Avion() {
                                 'punto-interactivo',
                                 estaOculto ? 'punto-interactivo--oculto' : 'punto-interactivo--visible',
                                 `punto-interactivo--${id}`,
+                                estaSeleccionado ? 'punto-interactivo--seleccionado' : '',
                             ].join(' ')}
+                            onClick={() => setPuntoSeleccionado(estaSeleccionado ? null : id)}
                         >
                             {id}
                         </div>
