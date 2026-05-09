@@ -1,21 +1,21 @@
 import { useGLTF, Html } from '@react-three/drei'
 import { useEffect, useState } from 'react'
 
-const PUNTOS_INTERACTIVOS = [
-    { id: 1, nombre: 'POI_Fuselaje' },
-    { id: 2, nombre: 'POI_Alas' },
-    { id: 3, nombre: 'POI_Motores' },
-    { id: 4, nombre: 'POI_Alerones' },
-    { id: 5, nombre: 'POI_Pitot' },
-    { id: 6, nombre: 'POI_Cola' },
-    { id: 7, nombre: 'POI_APU' },
-    { id: 8, nombre: 'POI_Spoilers' },
-    { id: 9, nombre: 'POI_Flaps' },
-    { id: 10, nombre: 'POI_Cabina' },
-    { id: 11, nombre: 'POI_Tren' },
+export const PUNTOS_INTERACTIVOS = [
+    { id: 1,  nombre: 'POI_Fuselaje', camara: [-133.75, 167.72, -200.01] },
+    { id: 2,  nombre: 'POI_Alas',     camara: [-184.52, 126.24,  203.21] },
+    { id: 3,  nombre: 'POI_Motores',  camara: [-173.76,  55.30,  150.25] },
+    { id: 4,  nombre: 'POI_Alerones', camara: [ 190.45,  59.85,  157.17] },
+    { id: 5,  nombre: 'POI_Pitot',    camara: [ -75.99,  57.05,  -98.79] },
+    { id: 6,  nombre: 'POI_Cola',     camara: [ 200.46, 156.01, -241.18] },
+    { id: 7,  nombre: 'POI_APU',      camara: [ 268.87, 135.63, -204.86] },
+    { id: 8,  nombre: 'POI_Spoilers', camara: [ 200.65,  94.49, -136.49] },
+    { id: 9,  nombre: 'POI_Flaps',    camara: [ 160.39,  56.56, -128.67] },
+    { id: 10, nombre: 'POI_Cabina',   camara: [-198.07,  46.16,   64.05] },
+    { id: 11, nombre: 'POI_Tren',     camara: [-173.17,  16.00,  112.39] },
 ]
 
-export default function Avion( { setPuntoSeleccionado, puntoSeleccionado } ) {
+export default function Avion({ setPuntoSeleccionado, puntoSeleccionado }) {
 
     const { scene } = useGLTF('/airplane4.glb')
     const [puntosOcultos, setPuntosOcultos] = useState({})
@@ -24,13 +24,10 @@ export default function Avion( { setPuntoSeleccionado, puntoSeleccionado } ) {
         scene.traverse((child) => {
             if (child.isMesh) {
                 child.material.color.setRGB(1,1,1);
-
                 child.material.roughness = 0.5;
-
                 child.material.polygonOffset = true;
                 child.material.polygonOffsetFactor = -1;
                 child.material.polygonOffsetUnits = -1;
-                
                 child.castShadow = true;
                 child.receiveShadow = true;
             }
@@ -55,11 +52,7 @@ export default function Avion( { setPuntoSeleccionado, puntoSeleccionado } ) {
                         onOcclude={(oculto) => {
                             setPuntosOcultos((estadoActual) => {
                                 if (estadoActual[id] === oculto) return estadoActual
-
-                                return {
-                                    ...estadoActual,
-                                    [id]: oculto,
-                                }
+                                return { ...estadoActual, [id]: oculto }
                             })
                         }}
                     >

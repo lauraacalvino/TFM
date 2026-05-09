@@ -1,22 +1,22 @@
 .popup-overlay {
     position: fixed;
     inset: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
     z-index: 9000;
-    padding: 20px;
+    pointer-events: none;
 }
 
 .popup-card {
+    position: absolute;
+    bottom: 32px;
+    left: 32px;
     background: #F2F6FF;
-    border: 2px solid #0146C7;
+    border: 2px solid #FFD602;
     border-radius: 16px;
     padding: 28px 28px 24px;
-    max-width: 420px;
-    width: 100%;
-    box-shadow: 0 12px 40px rgba(1, 70, 199, 0.15);
-    position: relative;
+    max-width: 380px;
+    width: calc(100vw - 64px);
+    box-shadow: 0 12px 40px rgba(199, 196, 1, 0.15);
+    pointer-events: all;
 }
 
 .popup-header {

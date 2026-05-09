@@ -13,15 +13,13 @@ export default function PuntoPopup ({ puntoSeleccionado, onClose }) {
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     exit={{ opacity: 0 }}
-                    onClick={onClose}
                 >
                     <motion.div
                         className="popup-card"
-                        initial={{ scale: 0.85, y: 24, opacity: 0 }}
-                        animate={{ scale: 1, y: 0, opacity: 1 }}
-                        exit={{ scale: 0.85, y: 24, opacity: 0 }}
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0, y: 20 }}
                         transition={{ type: 'spring', stiffness: 300, damping: 28 }}
-                        onClick={(e) => e.stopPropagation()}
                     >
 
                         <div className="popup-header">
