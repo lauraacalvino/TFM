@@ -62,7 +62,7 @@ export default function Avion({ setPuntoSeleccionado, puntoSeleccionado }) {
                         }}
                         style={{ overflow: 'visible' }}
                     >
-                        {/* El número — siempre visible */}
+                        {/* para que o numero estea sempre visible */}
                         <div
                             className={[
                                 'punto-interactivo',
@@ -75,7 +75,7 @@ export default function Avion({ setPuntoSeleccionado, puntoSeleccionado }) {
                             {id}
                         </div>
 
-                        {/* El popup — anclado al número */}
+                        {/* para que o pop up estea como anclado ao numero */}
                         <AnimatePresence>
                             {estaSeleccionado && infoActual && (
                                 <motion.div

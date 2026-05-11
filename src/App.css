@@ -9,8 +9,8 @@
 }
 
 .btn-round {
-    width: 45px;
-    height: 45px;
+    width: 48px;
+    height: 48px;
     border-radius: 50%;
     border: none;
     background: #0146C7;
@@ -19,18 +19,20 @@
     align-items: center;
     justify-content: center;
     cursor: pointer;
-    font-weight: bold;
-    transition: all 0.3s ease;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    transition: all 0.2s ease;
+    box-shadow: 0 4px 12px rgba(1, 70, 199, 0.35);
+}
+
+.btn-round i {
+    font-size: 22px;
+    line-height: 1;
 }
 
 .btn-round:hover {
-    background: #0146C7;
-    color: white;
-    transform: scale(1.1);
+    background: #003594;
+    transform: scale(1.08);
+    box-shadow: 0 6px 16px rgba(1, 70, 199, 0.45);
 }
-
-.btn-round .icon { font-size: 20px; }
 
 .modal-overlay {
     position: fixed;

@@ -10,12 +10,12 @@ export default function InfoCards() {
                 <motion.div 
                 key={item.id} 
                 className = "info-card"
-                initial={{opacity: 0, y:30}}
-                animate={{opacity: 1, y:0}}
+                initial={{opacity: 0, y:40, filter: 'blur(6px)'}}
+                animate={{opacity: 1, y:0, filter: 'blur(0px)'}}
                 transition={{
-                    duration: 0.1,
-                    ease: 'easeOut',
-                    delay: index * 0.1
+                    duration: 0.5,
+                    ease: [0.34, 1.56, 0.64, 1],
+                    delay: index * 0.07
                 }}
                 >
                     <h2 className = "card-title">{item.titulo}</h2>

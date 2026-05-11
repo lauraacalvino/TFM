@@ -4,7 +4,7 @@
     left: 0;
     background: #F2F6FF;
     border: 2px solid #0146C7;
-    border-radius: 0 16px 16px 16px; /* esquina sup-izq cuadrada: ahí está el número */
+    border-radius: 0 16px 16px 16px;
     padding: 16px 20px 18px;
     width: 320px;
     box-shadow: 0 12px 40px rgba(1, 70, 199, 0.18);

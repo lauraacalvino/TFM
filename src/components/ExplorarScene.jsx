@@ -59,8 +59,12 @@ export default function ExplorarScene({ backgroundColor, setMostrarAyuda }) {
     return (
         <>
             <div className="side-buttons">
-                <button className="btn-round help" onClick={() => setMostrarAyuda(true)}>?</button>
-                <button className="btn-round reset" onClick={resetCamera}>↺</button>
+                <button className="btn-round help" onClick={() => setMostrarAyuda(true)}>
+                    <i class="ri-info-i"></i>
+                </button>
+                <button className="btn-round reset" onClick={resetCamera}>
+                    <i class="ri-arrow-go-back-line"></i>
+                </button>
             </div>
 
             <Canvas
