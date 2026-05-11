@@ -1,49 +1,43 @@
-.popup-overlay {
-    position: fixed;
-    inset: 0;
-    z-index: 9000;
-    pointer-events: none;
-}
-
 .popup-card {
     position: absolute;
-    bottom: 32px;
-    left: 32px;
+    top: 0;
+    left: 0;
     background: #F2F6FF;
-    border: 2px solid #FFD602;
-    border-radius: 16px;
-    padding: 28px 28px 24px;
-    max-width: 380px;
-    width: calc(100vw - 64px);
-    box-shadow: 0 12px 40px rgba(199, 196, 1, 0.15);
+    border: 2px solid #0146C7;
+    border-radius: 0 16px 16px 16px; /* esquina sup-izq cuadrada: ahí está el número */
+    padding: 16px 20px 18px;
+    width: 320px;
+    box-shadow: 0 12px 40px rgba(1, 70, 199, 0.18);
     pointer-events: all;
+    z-index: 9000;
 }
 
 .popup-header {
     display: flex;
-    align-items: center;
-    gap: 14px;
-    margin-bottom: 12px;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 8px;
+    margin-bottom: 10px;
 }
 
 .popup-title {
     color: #0146C7;
-    font-size: 18px;
+    font-size: 15px;
     font-weight: 800;
     margin: 0;
-    flex: 1;
     letter-spacing: 0.02em;
+    line-height: 1.3;
 }
 
 .popup-close {
     background: none;
     border: none;
-    font-size: 26px;
+    font-size: 22px;
     color: #999;
     cursor: pointer;
     line-height: 1;
-    padding: 0 0 2px;
-    align-self: flex-start;
+    padding: 0;
+    flex-shrink: 0;
     transition: color 0.2s;
 }
 
@@ -52,25 +46,25 @@
 }
 
 .popup-description {
-    font-size: 14px;
+    font-size: 13px;
     color: #333;
     line-height: 1.6;
-    margin: 0 0 16px;
+    margin: 0 0 10px;
 }
 
 .popup-detail {
-    margin-top: 12px;
+    margin-top: 10px;
 }
 
 .popup-question {
-    font-size: 14px;
+    font-size: 13px;
     font-weight: 700;
     color: #1a1a1a;
-    margin: 0 0 4px;
+    margin: 0 0 3px;
 }
 
 .popup-answer {
-    font-size: 14px;
+    font-size: 13px;
     color: #444;
     line-height: 1.6;
     margin: 0;

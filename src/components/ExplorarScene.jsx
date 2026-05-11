@@ -3,47 +3,47 @@ import { Canvas, useFrame, useThree } from '@react-three/fiber'
 import { OrbitControls, Environment } from '@react-three/drei'
 import * as THREE from 'three'
 import Avion, { PUNTOS_INTERACTIVOS } from './Avion'
-import PuntoPopup from './Puntopopup'
 
+const tmpCamPos = new THREE.Vector3()
 const tmpTarget = new THREE.Vector3()
 
-function CameraFly({ puntoSeleccionado, onFlyEnd }) {
+function CameraFly({ puntoSeleccionado, controlsRef, onFlyEnd, volando }) {
     const { camera } = useThree()
-    const flyingTo = useRef(null)
 
     useFrame(() => {
+        if (!volando || !puntoSeleccionado) return
+
         const punto = PUNTOS_INTERACTIVOS.find(p => p.id === puntoSeleccionado)
-        if (!punto) {
-            flyingTo.current = null
-            return
-        }
+        if (!punto) return
 
         const [tx, ty, tz] = punto.camara
-        tmpTarget.set(tx, ty, tz)
+        tmpCamPos.set(tx, ty, tz)
+        tmpTarget.set(0, 0, 0)
 
-        // Si acaba de cambiar el destino, marcamos que estamos volando
-        if (flyingTo.current !== puntoSeleccionado) {
-            flyingTo.current = puntoSeleccionado
+        camera.position.lerp(tmpCamPos, 0.05)
+
+        if (controlsRef.current) {
+            controlsRef.current.target.lerp(tmpTarget, 0.05)
+            controlsRef.current.update()
         }
 
-        const dist = camera.position.distanceTo(tmpTarget)
-        if (dist < 1) {
-            camera.position.copy(tmpTarget)
-            onFlyEnd()   // avisa a ExplorarScene: ya llegamos, reactiva OrbitControls
-            flyingTo.current = null
-            return
+        if (camera.position.distanceTo(tmpCamPos) < 1) {
+            camera.position.copy(tmpCamPos)
+            if (controlsRef.current) {
+                controlsRef.current.target.copy(tmpTarget)
+                controlsRef.current.update()
+            }
+            onFlyEnd()
         }
-
-        camera.position.lerp(tmpTarget, 0.05)
     })
 
     return null
 }
 
 export default function ExplorarScene({ backgroundColor, setMostrarAyuda }) {
-    const [puntoSeleccionado, setPuntoSeleccionado] = useState(null);
-    const [volando, setVolando] = useState(false);
-    const controlsRef = useRef();
+    const [puntoSeleccionado, setPuntoSeleccionado] = useState(null)
+    const [volando, setVolando] = useState(false)
+    const controlsRef = useRef()
 
     const handleSeleccionar = (id) => {
         setPuntoSeleccionado(id)
@@ -51,10 +51,10 @@ export default function ExplorarScene({ backgroundColor, setMostrarAyuda }) {
     }
 
     const resetCamera = () => {
-        if (controlsRef.current) controlsRef.current.reset();
-        setPuntoSeleccionado(null);
-        setVolando(false);
-    };
+        if (controlsRef.current) controlsRef.current.reset()
+        setPuntoSeleccionado(null)
+        setVolando(false)
+    }
 
     return (
         <>
@@ -63,41 +63,36 @@ export default function ExplorarScene({ backgroundColor, setMostrarAyuda }) {
                 <button className="btn-round reset" onClick={resetCamera}>↺</button>
             </div>
 
-            <Canvas 
-                camera={{ position: [-345.06, 44.00, 0.64], fov: 35 }} 
+            <Canvas
+                camera={{ position: [-345.06, 44.00, 0.64], fov: 35 }}
                 gl={{ toneMappingExposure: 1.2, logarithmicDepthBuffer: true }}
             >
                 <color attach="background" args={[backgroundColor]} />
-                <ambientLight intensity={4.5} /> 
+                <ambientLight intensity={4.5} />
                 <directionalLight position={[10, 20, 10]} intensity={3.5} />
-                <Environment preset="night" /> 
-                
-                <Avion 
+                <Environment preset="night" />
+
+                <Avion
                     setPuntoSeleccionado={handleSeleccionar}
-                    puntoSeleccionado={puntoSeleccionado} 
+                    puntoSeleccionado={puntoSeleccionado}
                 />
 
-                {volando && (
-                    <CameraFly
-                        puntoSeleccionado={puntoSeleccionado}
-                        onFlyEnd={() => setVolando(false)}
-                    />
-                )}
+                <CameraFly
+                    puntoSeleccionado={puntoSeleccionado}
+                    controlsRef={controlsRef}
+                    volando={volando}
+                    onFlyEnd={() => setVolando(false)}
+                />
 
-                <OrbitControls 
+                <OrbitControls
                     ref={controlsRef}
                     makeDefault
                     enabled={!volando}
-                    minDistance={100} 
-                    maxDistance={350} 
-                    enablePan={true} 
+                    minDistance={100}
+                    maxDistance={350}
+                    enablePan={true}
                 />
             </Canvas>
-
-            <PuntoPopup
-                puntoSeleccionado={puntoSeleccionado}
-                onClose={() => setPuntoSeleccionado(null)}
-            />
         </>
-    );
+    )
 }
