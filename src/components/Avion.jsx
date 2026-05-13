@@ -43,8 +43,9 @@ export default function Avion({ setPuntoSeleccionado, puntoSeleccionado }) {
             {PUNTOS_INTERACTIVOS.map(({ id, nombre }) => {
                 const punto = scene.getObjectByName(nombre)
                 const estaOculto = puntosOcultos[id]
-                const estaSeleccionado = puntoSeleccionado === id
+                const estaSeleccionado = Number(puntoSeleccionado) === id
                 const infoActual = infoData.find(item => item.id === id)
+
 
                 if (!punto) return null
 

@@ -13,7 +13,7 @@ function CameraFly({ puntoSeleccionado, controlsRef, onFlyEnd, volando }) {
     useFrame(() => {
         if (!volando || !puntoSeleccionado) return
 
-        const punto = PUNTOS_INTERACTIVOS.find(p => p.id === puntoSeleccionado)
+        const punto = PUNTOS_INTERACTIVOS.find(p => p.id === Number(puntoSeleccionado))
         if (!punto) return
 
         const [tx, ty, tz] = punto.camara
@@ -44,10 +44,12 @@ export default function ExplorarScene({ backgroundColor, setMostrarAyuda }) {
     const [puntoSeleccionado, setPuntoSeleccionado] = useState(null)
     const [volando, setVolando] = useState(false)
     const controlsRef = useRef()
+    const isDragging = useRef(false)
 
     const handleSeleccionar = (id) => {
-        setPuntoSeleccionado(id)
-        if (id !== null) setVolando(true)
+        const idNum = id === null ? null : Number(id)
+        setPuntoSeleccionado(idNum)
+        if (idNum !== null) setVolando(true)
     }
 
     const resetCamera = () => {
@@ -56,20 +58,37 @@ export default function ExplorarScene({ backgroundColor, setMostrarAyuda }) {
         setVolando(false)
     }
 
+    const handlePointerDown = () => {
+        isDragging.current = false
+    }
+
+    const handlePointerMove = () => {
+        isDragging.current = true
+    }
+
+    const handlePointerUp = () => {
+        if (isDragging.current && puntoSeleccionado) {
+            setPuntoSeleccionado(null)
+        }
+    }
+
     return (
         <>
             <div className="side-buttons">
                 <button className="btn-round help" onClick={() => setMostrarAyuda(true)}>
-                    <i class="ri-info-i"></i>
+                    <i className="ri-info-i"></i>
                 </button>
                 <button className="btn-round reset" onClick={resetCamera}>
-                    <i class="ri-arrow-go-back-line"></i>
+                    <i className="ri-arrow-go-back-line"></i>
                 </button>
             </div>
 
             <Canvas
                 camera={{ position: [-345.06, 44.00, 0.64], fov: 35 }}
-                gl={{ toneMappingExposure: 1.2, logarithmicDepthBuffer: true }}
+                gl={{ toneMappingExposure: 1.2 }}
+                onPointerDown={handlePointerDown}
+                onPointerMove={handlePointerMove}
+                onPointerUp={handlePointerUp}
             >
                 <color attach="background" args={[backgroundColor]} />
                 <ambientLight intensity={4.5} />
