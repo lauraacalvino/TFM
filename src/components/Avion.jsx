@@ -1,18 +1,17 @@
 import { useGLTF, Html } from '@react-three/drei'
 import { useEffect, useState } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
-import './PuntoPopup.css'
 import { infoData } from '../data/infoData'
-import './PuntoPopup.css'
+import './Puntopopup.css'
 
 export const PUNTOS_INTERACTIVOS = [
     { id: 1,  nombre: 'POI_Fuselaje', camara: [-133.75, 167.72, -200.01] },
     { id: 2,  nombre: 'POI_Alas',     camara: [-184.52, 126.24,  203.21] },
-    { id: 3,  nombre: 'POI_Motores',  camara: [-173.76,  55.30,  150.25] },
+    { id: 3,  nombre: 'POI_Motores',  camara: [-173.76,  55.30,  150.25], popupIzquierda: true },
     { id: 4,  nombre: 'POI_Alerones', camara: [132.45,   36.91,  186.01] },
-    { id: 5,  nombre: 'POI_Pitot',    camara: [-81.48,  131.27, -101.29] },
+    { id: 5,  nombre: 'POI_Pitot',    camara: [-81.48,  131.27, -101.29], popupIzquierda: true },
     { id: 6,  nombre: 'POI_Cola',     camara: [ 200.46, 156.01, -241.18] },
-    { id: 7,  nombre: 'POI_APU',      camara: [ 268.87, 135.63, -204.86] },
+    { id: 7,  nombre: 'POI_APU',      camara: [ 268.87, 135.63, -204.86], popupIzquierda: true },
     { id: 8,  nombre: 'POI_Spoilers', camara: [ 200.65,  94.49, -136.49] },
     { id: 9,  nombre: 'POI_Flaps',    camara: [ 160.39,  56.56, -128.67] },
     { id: 10, nombre: 'POI_Cabina',   camara: [-198.07,  46.16,   64.05] },
@@ -41,7 +40,7 @@ export default function Avion({ setPuntoSeleccionado, puntoSeleccionado }) {
     return (
         <group>
             <primitive object={scene} scale={1} position={[0, 0, 0]} />
-            {PUNTOS_INTERACTIVOS.map(({ id, nombre }) => {
+            {PUNTOS_INTERACTIVOS.map(({ id, nombre, popupIzquierda }) => {
                 const punto = scene.getObjectByName(nombre)
                 const estaOculto = puntosOcultos[id]
                 const estaSeleccionado = Number(puntoSeleccionado) === id
@@ -51,6 +50,7 @@ export default function Avion({ setPuntoSeleccionado, puntoSeleccionado }) {
                 if (!punto) return null
 
                 const pos = [punto.position.x, punto.position.y, punto.position.z]
+                const clasePopup = popupIzquierda ? 'popup-card popup-card--izquierda' : 'popup-card'
 
                 return (
                     <group key={id}>
@@ -64,7 +64,7 @@ export default function Avion({ setPuntoSeleccionado, puntoSeleccionado }) {
                             <AnimatePresence>
                                 {estaSeleccionado && infoActual && (
                                     <motion.div
-                                        className="popup-card"
+                                        className={clasePopup}
                                         initial={{ opacity: 0, scale: 0.9, y: -4 }}
                                         animate={{ opacity: 1, scale: 1, y: 0 }}
                                         exit={{ opacity: 0, scale: 0.9, y: -4 }}
