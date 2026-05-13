@@ -1,6 +1,7 @@
 import { useGLTF, Html } from '@react-three/drei'
 import { useEffect, useState } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
+import './PuntoPopup.css'
 import { infoData } from '../data/infoData'
 import './PuntoPopup.css'
 
