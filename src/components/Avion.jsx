@@ -11,9 +11,9 @@ export const PUNTOS_INTERACTIVOS = [
     { id: 4,  nombre: 'POI_Alerones', camara: [132.45,   36.91,  186.01] },
     { id: 5,  nombre: 'POI_Pitot',    camara: [-81.48,  131.27, -101.29], popupIzquierda: true },
     { id: 6,  nombre: 'POI_Cola',     camara: [ 200.46, 156.01, -241.18] },
-    { id: 7,  nombre: 'POI_APU',      camara: [ 268.87, 135.63, -204.86], popupIzquierda: true },
+    { id: 7,  nombre: 'POI_APU',      camara: [ 268.87, 135.63, -204.86] },
     { id: 8,  nombre: 'POI_Spoilers', camara: [ 200.65,  94.49, -136.49] },
-    { id: 9,  nombre: 'POI_Flaps',    camara: [ 160.39,  56.56, -128.67] },
+    { id: 9,  nombre: 'POI_Flaps',    camara: [ 160.39,  56.56, -128.67], popupIzquierda: true },
     { id: 10, nombre: 'POI_Cabina',   camara: [-198.07,  46.16,   64.05] },
     { id: 11, nombre: 'POI_Tren',     camara: [-173.17,  16.00,  112.39] },
 ]

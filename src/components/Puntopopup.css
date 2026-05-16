@@ -12,6 +12,14 @@
     z-index: 9000;
 }
 
+.popup-card--izquierda {
+    position: absolute;
+    top: 14px;
+    left: auto;
+    right: -16px;
+    border-radius: 16px 0 16px 16px;
+}
+
 .popup-card,
 .popup-card * {
     box-sizing: border-box;
@@ -73,11 +81,4 @@
     color: #444;
     line-height: 1.6;
     margin: 0;
-}
-
-.popup-card--izquierda {
-    left: auto;
-    right: 14px;
-    border-radius: 16px 0 16px 16px;
-    transform-origin: top right;
 }

@@ -44,32 +44,21 @@ export default function ExplorarScene({ backgroundColor, setMostrarAyuda }) {
     const [puntoSeleccionado, setPuntoSeleccionado] = useState(null)
     const [volando, setVolando] = useState(false)
     const controlsRef = useRef()
-    const isDragging = useRef(false)
 
     const handleSeleccionar = (id) => {
         const idNum = id === null ? null : Number(id)
         setPuntoSeleccionado(idNum)
-        if (idNum !== null) setVolando(true)
+        if (idNum !== null) {
+            setVolando(true)
+        } else {
+            setVolando(false) //pa cerrar popup tamen para o voo
+        }
     }
 
     const resetCamera = () => {
         if (controlsRef.current) controlsRef.current.reset()
         setPuntoSeleccionado(null)
         setVolando(false)
-    }
-
-    const handlePointerDown = () => {
-        isDragging.current = false
-    }
-
-    const handlePointerMove = () => {
-        isDragging.current = true
-    }
-
-    const handlePointerUp = () => {
-        if (isDragging.current && puntoSeleccionado) {
-            setPuntoSeleccionado(null)
-        }
     }
 
     return (
@@ -86,9 +75,6 @@ export default function ExplorarScene({ backgroundColor, setMostrarAyuda }) {
             <Canvas
                 camera={{ position: [-345.06, 44.00, 0.64], fov: 35 }}
                 gl={{ toneMappingExposure: 1.2 }}
-                onPointerDown={handlePointerDown}
-                onPointerMove={handlePointerMove}
-                onPointerUp={handlePointerUp}
             >
                 <color attach="background" args={[backgroundColor]} />
                 <ambientLight intensity={4.5} />
@@ -110,7 +96,7 @@ export default function ExplorarScene({ backgroundColor, setMostrarAyuda }) {
                 <OrbitControls
                     ref={controlsRef}
                     makeDefault
-                    enabled={!volando}
+                    enabled={!volando && !puntoSeleccionado}
                     minDistance={100}
                     maxDistance={350}
                     enablePan={true}

@@ -20,9 +20,7 @@ function App() {
           setMostrarAyuda={setMostrarAyuda}
         />
       ) : (
-        <div className="info-section-container">
-          <InfoCards />
-        </div>
+        <InfoCards />
       )}
 
       <AyudaModal mostrarAyuda={mostrarAyuda} setMostrarAyuda={setMostrarAyuda} />
