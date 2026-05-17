@@ -4,36 +4,60 @@ import { OrbitControls, Environment } from '@react-three/drei'
 import * as THREE from 'three'
 import Avion, { PUNTOS_INTERACTIVOS } from './Avion'
 
+const HOME_POSITION = [-345.06, 44.00, 0.64]
+
 const tmpCamPos = new THREE.Vector3()
 const tmpTarget = new THREE.Vector3()
 
-function CameraFly({ puntoSeleccionado, controlsRef, onFlyEnd, volando }) {
+function CameraFly({ puntoSeleccionado, volando, reseteando, controlsRef, onFlyEnd, onResetEnd }) {
     const { camera } = useThree()
 
     useFrame(() => {
-        if (!volando || !puntoSeleccionado) return
+        // Vuelo hacia un punto
+        if (volando && puntoSeleccionado) {
+            const punto = PUNTOS_INTERACTIVOS.find(p => p.id === Number(puntoSeleccionado))
+            if (!punto) return
 
-        const punto = PUNTOS_INTERACTIVOS.find(p => p.id === Number(puntoSeleccionado))
-        if (!punto) return
+            const [tx, ty, tz] = punto.camara
+            tmpCamPos.set(tx, ty, tz)
+            tmpTarget.set(0, 0, 0)
 
-        const [tx, ty, tz] = punto.camara
-        tmpCamPos.set(tx, ty, tz)
-        tmpTarget.set(0, 0, 0)
-
-        camera.position.lerp(tmpCamPos, 0.05)
-
-        if (controlsRef.current) {
-            controlsRef.current.target.lerp(tmpTarget, 0.05)
-            controlsRef.current.update()
-        }
-
-        if (camera.position.distanceTo(tmpCamPos) < 1) {
-            camera.position.copy(tmpCamPos)
+            camera.position.lerp(tmpCamPos, 0.05)
             if (controlsRef.current) {
-                controlsRef.current.target.copy(tmpTarget)
+                controlsRef.current.target.lerp(tmpTarget, 0.05)
                 controlsRef.current.update()
             }
-            onFlyEnd()
+
+            if (camera.position.distanceTo(tmpCamPos) < 1) {
+                camera.position.copy(tmpCamPos)
+                if (controlsRef.current) {
+                    controlsRef.current.target.copy(tmpTarget)
+                    controlsRef.current.update()
+                }
+                onFlyEnd()
+            }
+        }
+
+        // Vuelo de vuelta a home
+        if (reseteando) {
+            const [tx, ty, tz] = HOME_POSITION
+            tmpCamPos.set(tx, ty, tz)
+            tmpTarget.set(0, 0, 0)
+
+            camera.position.lerp(tmpCamPos, 0.05)
+            if (controlsRef.current) {
+                controlsRef.current.target.lerp(tmpTarget, 0.05)
+                controlsRef.current.update()
+            }
+
+            if (camera.position.distanceTo(tmpCamPos) < 1) {
+                camera.position.copy(tmpCamPos)
+                if (controlsRef.current) {
+                    controlsRef.current.target.copy(tmpTarget)
+                    controlsRef.current.update()
+                }
+                onResetEnd()
+            }
         }
     })
 
@@ -43,22 +67,24 @@ function CameraFly({ puntoSeleccionado, controlsRef, onFlyEnd, volando }) {
 export default function ExplorarScene({ backgroundColor, setMostrarAyuda }) {
     const [puntoSeleccionado, setPuntoSeleccionado] = useState(null)
     const [volando, setVolando] = useState(false)
+    const [reseteando, setReseteando] = useState(false)
     const controlsRef = useRef()
 
     const handleSeleccionar = (id) => {
         const idNum = id === null ? null : Number(id)
         setPuntoSeleccionado(idNum)
+        setReseteando(false)
         if (idNum !== null) {
             setVolando(true)
         } else {
-            setVolando(false) //pa cerrar popup tamen para o voo
+            setVolando(false)
         }
     }
 
     const resetCamera = () => {
-        if (controlsRef.current) controlsRef.current.reset()
         setPuntoSeleccionado(null)
         setVolando(false)
+        setReseteando(true)
     }
 
     return (
@@ -88,15 +114,17 @@ export default function ExplorarScene({ backgroundColor, setMostrarAyuda }) {
 
                 <CameraFly
                     puntoSeleccionado={puntoSeleccionado}
-                    controlsRef={controlsRef}
                     volando={volando}
+                    reseteando={reseteando}
+                    controlsRef={controlsRef}
                     onFlyEnd={() => setVolando(false)}
+                    onResetEnd={() => setReseteando(false)}
                 />
 
                 <OrbitControls
                     ref={controlsRef}
                     makeDefault
-                    enabled={!volando && !puntoSeleccionado}
+                    enabled={!volando && !puntoSeleccionado && !reseteando}
                     minDistance={100}
                     maxDistance={350}
                     enablePan={true}

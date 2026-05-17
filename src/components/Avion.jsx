@@ -26,7 +26,7 @@ export default function Avion({ setPuntoSeleccionado, puntoSeleccionado }) {
     useEffect(() => {
         scene.traverse((child) => {
             if (child.isMesh) {
-                child.material.color.setRGB(1,1,1)
+                child.material.color.setRGB(0.88, 0.88, 0.9)
                 child.material.roughness = 0.5
                 child.material.polygonOffset = true
                 child.material.polygonOffsetFactor = -1
