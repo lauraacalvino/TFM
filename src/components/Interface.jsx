@@ -15,18 +15,22 @@ export default function Interface ({seccion, setSeccion}) {
 
             <div className='button-group'>
 
-                <button 
-                className={`btn ${seccion === 'explorar' ? 'active' : ''}`}
-                onClick={() => setSeccion('explorar')}>
-                    Explorar
+                <button
+                    className={`btn ${seccion === 'explorar' ? 'active' : ''}`}
+                    onClick={() => setSeccion('explorar')}
+                >
+                    <span>Explorar</span>
+                    <div className="btn-dot"></div>
                 </button>
 
-                <button 
-                className={`btn ${seccion === 'info' ? 'active' : ''}`}
-                onClick={() => setSeccion('info')}>
-                    Info
+                <button
+                    className={`btn ${seccion === 'info' ? 'active' : ''}`}
+                    onClick={() => setSeccion('info')}
+                >
+                    <span>Info</span>
+                    <div className="btn-dot"></div>
                 </button>
-
+                
             </div>
 
         </div>

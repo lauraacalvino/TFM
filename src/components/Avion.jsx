@@ -20,7 +20,7 @@ export const PUNTOS_INTERACTIVOS = [
 
 export default function Avion({ setPuntoSeleccionado, puntoSeleccionado }) {
 
-    const { scene } = useGLTF('/airplane4.glb')
+    const { scene } = useGLTF('/airplane5.glb')
     const [puntosOcultos, setPuntosOcultos] = useState({})
 
     useEffect(() => {

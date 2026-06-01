@@ -3,6 +3,7 @@ import { Canvas, useFrame, useThree } from '@react-three/fiber'
 import { OrbitControls, Environment } from '@react-three/drei'
 import * as THREE from 'three'
 import Avion, { PUNTOS_INTERACTIVOS } from './Avion'
+import PanelLateral from './PanelLateral'
 
 const HOME_POSITION = [-345.06, 44.00, 0.64]
 
@@ -130,6 +131,11 @@ export default function ExplorarScene({ backgroundColor, setMostrarAyuda }) {
                     enablePan={true}
                 />
             </Canvas>
+
+            <PanelLateral
+                puntoSeleccionado={puntoSeleccionado}
+                setPuntoSeleccionado={handleSeleccionar}
+            />
         </>
     )
 }

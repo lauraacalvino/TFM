@@ -3,11 +3,12 @@
     top: 14px;
     left: 14px;
     background: #F2F6FF;
-    border: 2px solid #FFD700;
+    border: 1.5px solid;
+    border-color:#0146C7;
     border-radius: 0 16px 16px 16px;
     padding: 16px 20px 18px;
     width: 320px;
-    box-shadow: 0 12px 40px rgba(1, 70, 199, 0.18);
+    box-shadow: 0 12px 40px rgba(1, 70, 199, 0.12);
     pointer-events: all;
     z-index: 9000;
 }

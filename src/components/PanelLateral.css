@@ -1,0 +1,51 @@
+.panel-lateral {
+    position: fixed;
+    right: 24px;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 100;
+    background: #F2F6FF;
+    border-radius: 24px;
+    padding: 16px 10px;
+    box-shadow: 8px 8px 16px #c8cfe0, -8px -8px 16px #ffffff;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    align-items: center;
+    width: 56px;
+}
+
+.panel-slot {
+    width: 38px;
+    height: 38px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-family: 'Poppins', sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+    color: #6a7a90;
+    background: #F2F6FF;
+    box-shadow: 4px 4px 8px #c8cfe0, -4px -4px 8px #ffffff;
+    transition: all 0.2s ease;
+    border: none;
+    outline: none;
+}
+
+.panel-slot:hover {
+    color: #0146C7;
+    box-shadow: 5px 5px 10px #c8cfe0, -5px -5px 10px #ffffff;
+}
+
+.panel-slot:active {
+    transform: scale(0.95);
+}
+
+.panel-slot.active {
+    background: linear-gradient(135deg, #1a6aff, #0146C7);
+    color: white;
+    box-shadow: inset 3px 3px 6px rgba(0, 0, 0, 0.15), inset -2px -2px 4px rgba(255, 255, 255, 0.1);
+    font-weight: 500;
+}

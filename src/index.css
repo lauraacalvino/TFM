@@ -16,27 +16,27 @@ html, body, #root {
     align-items: center;
     justify-content: center;
     color: white;
-    font-weight: bold;
+    font-weight: 600;
+    font-size: 13px;
     cursor: pointer;
-    border: 2px solid white;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-    transition: background 0.3s ease, opacity 0.3s ease, transform 0.3s ease;
+    border: none;
+    transition: opacity 0.3s ease, transform 0.3s ease;
 }
 
 .punto-interactivo--visible {
-    background: #0146C7;
+    background: linear-gradient(135deg, #1a6aff, #0146C7);
     opacity: 1;
     transform: scale(1);
 }
 
 .punto-interactivo--oculto {
-    background: #aecafd;
-    opacity: 0.45;
+    background: linear-gradient(135deg, #1a6aff, #0146C7);
+    opacity: 0.35;
     transform: scale(0.85);
 }
 
 .punto-interactivo--seleccionado {
-    background: #F5C400 !important;
-    color: white;
+    background: linear-gradient(135deg,  #1a6aff, #0146C7) !important;
+    color: #ffffff;
     transform: scale(1.15);
 }

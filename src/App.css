@@ -9,29 +9,33 @@
 }
 
 .btn-round {
-    width: 48px;
-    height: 48px;
-    border-radius: 50%;
+    width: 52px;
+    height: 52px;
+    border-radius: 20px;
     border: none;
-    background: #0146C7;
-    color: white;
+    background: #F2F6FF;
+    color: #0146C7;
     display: flex;
     align-items: center;
     justify-content: center;
     cursor: pointer;
+    box-shadow: 7px 7px 14px #c8cfe0, -7px -7px 14px #ffffff;
     transition: all 0.2s ease;
-    box-shadow: 0 4px 12px rgba(1, 70, 199, 0.35);
+    outline: none;
 }
 
 .btn-round i {
     font-size: 22px;
-    line-height: 1;
+    line-height: 3;
 }
 
 .btn-round:hover {
-    background: #003594;
-    transform: scale(1.08);
-    box-shadow: 0 6px 16px rgba(1, 70, 199, 0.45);
+    color: #003594;
+    box-shadow: 5px 5px 10px #c8cfe0, -5px -5px 10px #ffffff;
+}
+
+.btn-round:active {
+    box-shadow: inset 5px 5px 10px #c8cfe0, inset -5px -5px 10px #ffffff;
 }
 
 .modal-overlay {
