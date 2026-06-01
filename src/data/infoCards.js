@@ -54,8 +54,9 @@ export const infoData = [
     {
     id: 8,
     titulo: "PILOTO AUTOMÁTICO",
+    descripcion: "El piloto automático es una herramienta de apoyo que los pilotos activan y supervisan en todo momento. No reemplaza al piloto, sino que le libera de tareas repetitivas para que pueda centrarse en lo más importante.",
     pregunta: "¿El avión vuela solo?",
-    respuesta: "No, el avión nunca vuelva solo. El piloto automático es un asistente de alta precisión cuya función es mantener el avión estabilizado en su ruta y altitud, para que así los pilotos puedan centrarse en tareas de mayor importancia, como la comunicación con tierra, la vigilancia del radar meteorológico y el chequeo constante de todos los sistemas. El piloto automático quita carga de trabajo sobre el humano para poder atender a otros procedimientos de manera más segura y que el avión navegue más suavemente."
+    respuesta: "No, el avión nunca vuela solo. El piloto automático mantiene el avión estabilizado en su ruta y altitud, pero siempre bajo la supervisión constante de los pilotos, que monitorizan todos los sistemas, se comunican con tierra y toman decisiones en cada fase del vuelo."
     },
 
         {
@@ -63,6 +64,30 @@ export const infoData = [
     titulo: "MODO AVIÓN",
     pregunta: "¿Es verdaderamente importante poner el modo avión?",
     respuesta: "Sí, ya que especialmente en el despegue y aterrizaje, las conexiones con controladores aéreos son muy importantes, por lo que varias conexiones de móviles encendidas pueden provocar espurios, es decir, avisos de emergencia falsos."
+    },
+
+    {
+    id: 10,
+    titulo: "Mascarillas de oxígeno",
+    descripcion: "Esas mascarillas que cuelgan del techo son parte del sistema de seguridad del avión, pero en la práctica casi nunca se usan. Su sola presencia ya es una garantía.",
+    pregunta: "¿Por qué están ahí si casi nunca se usan?",
+    respuesta: "Por la misma razón que los coches tienen airbag: no porque vayan a necesitarse, sino para que si alguna vez ocurre algo inesperado, el pasajero esté protegido. Si la presión de cabina bajase, los pilotos actuarían de inmediato y las mascarillas simplemente te acompañarían durante esos minutos hasta que los pilotos bajasen el avión a atmósfera respirable."
+    },
+
+    {
+    id: 11,
+    titulo: "IMPACTO DE AVES",
+    descripcion: "El impacto de un ave en el motor es una situación poco frecuente pero perfectamente contemplada en la formación de cualquier piloto.",
+    pregunta: "¿Qué pasa si un pájaro entra en el motor?",
+    respuesta: "Los pilotos practican esta maniobra constantemente en simuladores. Saben exactamente cómo compensar el avión y aterrizar de forma segura. Además, los motores están certificados para soportar este tipo de impactos."
+    },
+
+    {
+    id: 12,
+    titulo: "ATERRIZAJES CON VIENTO",
+    descripcion: "El viento es uno de los factores más conocidos y controlados en aviación. Los pilotos trabajan con él a diario y saben exactamente cómo manejarlo.",
+    pregunta: "¿Es peligroso aterrizar con mucho viento?",
+    respuesta: "En absoluto. Los pilotos conocen en todo momento las condiciones del viento y tienen límites muy claros establecidos. Si el viento supera esos límites, simplemente esperan a que amaine o se dirigen a otro aeropuerto, algo completamente rutinario para ellos. Nunca aterrizan si no están seguros de poder hacerlo con total normalidad."
     },
 
 ];
