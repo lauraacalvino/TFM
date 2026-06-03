@@ -7,15 +7,16 @@ import PanelLateral from './PanelLateral'
 
 const HOME_POSITION = [-345.06, 44.00, 0.64]
 
-const tmpCamPos = new THREE.Vector3()
+const tmpCamPos = new THREE.Vector3() //contenedor de tres dimensions
 const tmpTarget = new THREE.Vector3()
 
 function CameraFly({ puntoSeleccionado, volando, reseteando, controlsRef, onFlyEnd, onResetEnd }) {
     const { camera } = useThree()
 
     useFrame(() => {
-        // Vuelo hacia un punto
+        // aqui vai voar cara un punto
         if (volando && puntoSeleccionado) {
+            // buscamos no array de datos par que o obxecto coincida
             const punto = PUNTOS_INTERACTIVOS.find(p => p.id === Number(puntoSeleccionado))
             if (!punto) return
 
@@ -39,7 +40,7 @@ function CameraFly({ puntoSeleccionado, volando, reseteando, controlsRef, onFlyE
             }
         }
 
-        // Vuelo de vuelta a home
+        // aqui vai voar cara home, o reset
         if (reseteando) {
             const [tx, ty, tz] = HOME_POSITION
             tmpCamPos.set(tx, ty, tz)

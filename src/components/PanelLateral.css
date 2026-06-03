@@ -1,7 +1,7 @@
 .panel-lateral {
     position: fixed;
     right: 24px;
-    top: 50%;
+    top: 30%;
     transform: translateY(-50%);
     z-index: 100;
     background: #F2F6FF;
