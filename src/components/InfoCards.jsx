@@ -1,17 +1,21 @@
 import './InfoCards.css';
-import { infoData } from '../data/infoCards';
-import { motion } from "motion/react"
-import { useRef, useEffect } from 'react';
+import { infoData, categorias } from '../data/infoCards';
+import { motion, AnimatePresence } from "motion/react"
+import { useRef, useEffect, useState } from 'react';
+import Button from './Button'
 
 export default function InfoCards() {
-
+    const [categoriaActiva, setCategoriaActiva] = useState(categorias[0].id)
     const containerRef = useRef(null)
     const timeoutRef = useRef(null)
+
+    const cardsActivas = infoData.filter(item =>
+        categorias.find(c => c.id === categoriaActiva)?.ids.includes(item.id)
+    )
 
     useEffect(() => {
         const el = containerRef.current
         if (!el) return
-
         const handleScroll = () => {
             el.classList.add('is-scrolling')
             clearTimeout(timeoutRef.current)
@@ -19,7 +23,6 @@ export default function InfoCards() {
                 el.classList.remove('is-scrolling')
             }, 800)
         }
-
         el.addEventListener('scroll', handleScroll)
         return () => {
             el.removeEventListener('scroll', handleScroll)
@@ -27,29 +30,64 @@ export default function InfoCards() {
         }
     }, [])
 
+    useEffect(() => {
+        if (containerRef.current) {
+            containerRef.current.scrollTop = 0
+        }
+    }, [categoriaActiva])
+
     return (
-        <div className="info-section-container" ref={containerRef}>
-            <div className='cards-grid'>
-                {infoData.map((item, index) => (
-                    <motion.div
-                        key={item.id}
-                        className="info-card"
-                        initial={{ opacity: 0, y: 40, filter: 'blur(6px)' }}
-                        animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
-                        transition={{
-                            duration: 0.5,
-                            ease: [0.34, 1.56, 0.64, 1],
-                            delay: index * 0.07
-                        }}
+        <div className="info-layout">
+
+            {/* o panel esquerdo de categorías */}
+            <div className="categorias-panel">
+                {categorias.map(cat => (
+                    <Button
+                        key={cat.id}
+                        variant="categoria"
+                        active={categoriaActiva === cat.id}
+                        onClick={() => setCategoriaActiva(cat.id)}
+                        title={cat.titulo}
                     >
-                        <h2 className="card-title">{item.titulo}</h2>
-                        {item.descripcion && <p className="card-desc">{item.descripcion}</p>}
-                        <div className='card-content'>
-                            <p className='card-question'>{item.pregunta}</p>
-                            <p className='card-answer'>{item.respuesta}</p>
-                        </div>
-                    </motion.div>
+                        <i className={cat.icono}></i>
+                        <span>{cat.titulo}</span>
+                    </Button>
                 ))}
+            </div>
+
+            {/* parte dereita coas cards */}
+            <div className="info-section-container" ref={containerRef}>
+                <AnimatePresence mode="wait">
+                    <motion.div
+                        key={categoriaActiva}
+                        className="cards-grid"
+                        initial={{ opacity: 0, x: 20 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        exit={{ opacity: 0, x: -20 }}
+                        transition={{ duration: 0.25, ease: 'easeOut' }}
+                    >
+                        {cardsActivas.map((item, index) => (
+                            <motion.div
+                                key={item.id}
+                                className="info-card"
+                                initial={{ opacity: 0, y: 30, filter: 'blur(6px)' }}
+                                animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
+                                transition={{
+                                    duration: 0.4,
+                                    ease: [0.34, 1.56, 0.64, 1],
+                                    delay: index * 0.08
+                                }}
+                            >
+                                <h2 className="card-title">{item.titulo}</h2>
+                                {item.descripcion && <p className="card-desc">{item.descripcion}</p>}
+                                <div className='card-content'>
+                                    <p className='card-question'>{item.pregunta}</p>
+                                    <p className='card-answer'>{item.respuesta}</p>
+                                </div>
+                            </motion.div>
+                        ))}
+                    </motion.div>
+                </AnimatePresence>
             </div>
         </div>
     );

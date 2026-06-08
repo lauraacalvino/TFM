@@ -8,36 +8,6 @@
     z-index: 1000;
 }
 
-.btn-round {
-    width: 52px;
-    height: 52px;
-    border-radius: 20px;
-    border: none;
-    background: #F2F6FF;
-    color: #0146C7;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    box-shadow: 7px 7px 14px #c8cfe0, -7px -7px 14px #ffffff;
-    transition: all 0.2s ease;
-    outline: none;
-}
-
-.btn-round i {
-    font-size: 22px;
-    line-height: 3;
-}
-
-.btn-round:hover {
-    color: #003594;
-    box-shadow: 5px 5px 10px #c8cfe0, -5px -5px 10px #ffffff;
-}
-
-.btn-round:active {
-    box-shadow: inset 5px 5px 10px #c8cfe0, inset -5px -5px 10px #ffffff;
-}
-
 .modal-overlay {
     position: fixed;
     top: 0;
@@ -59,13 +29,13 @@
     border-radius: 20px;
     max-width: 500px;
     width: 100%;
-    box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
     border: 2px solid #0146C7;
     text-align: left;
 }
 
 .modal-content h2 { color: #0146C7; margin-top: 0; }
-.modal-content p { line-height: 1.6; color: #333; }
+.modal-content p  { line-height: 1.6; color: #333; }
 .modal-content ul { padding-left: 20px; color: #333; }
 .modal-content li { margin-bottom: 10px; }
 

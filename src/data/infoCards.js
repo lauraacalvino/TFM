@@ -1,3 +1,31 @@
+export const categorias = [
+    {
+        id: 'meteo',
+        titulo: 'Meteorología',
+        icono: 'ri-thunderstorms-line',
+        ids: [1, 6, 12]
+    },
+    {
+        id: 'seguridad',
+        titulo: 'Seguridad',
+        icono: 'ri-shield-check-line',
+        ids: [2, 5, 7]
+    },
+    {
+        id: 'abordo',
+        titulo: 'A bordo',
+        icono: 'ri-plane-line',
+        ids: [3, 4, 9, 10]
+    },
+    {
+        id: 'tecnologia',
+        titulo: 'Tecnología',
+        icono: 'ri-settings-3-line',
+        ids: [8, 11]
+    },
+]
+
+
 export const infoData = [
     {
     id: 1,

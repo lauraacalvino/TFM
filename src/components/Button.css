@@ -1,0 +1,117 @@
+/* BASE */
+.btn-base {
+    border: none;
+    cursor: pointer;
+    outline: none;
+    font-family: 'Poppins', sans-serif;
+    transition: all 0.15s ease, box-shadow 0.2s ease;
+    background: #F2F6FF;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* VARIANTE NAV — botones Explorar / Info */
+.btn--nav {
+    position: relative;
+    justify-content: space-between;
+    gap: 32px;
+    padding: 16px 20px 16px 28px;
+    border-radius: 50px;
+    color: #4a6080;
+    font-size: 16px;
+    font-weight: 500;
+    min-width: 160px;
+    box-shadow: 7px 7px 14px #c8cfe0, -7px -7px 14px #ffffff;
+}
+
+.btn--nav:hover { color: #2a4060; }
+
+.btn--nav:active,
+.btn--nav.active {
+    box-shadow: inset 5px 5px 10px #c8cfe0, inset -5px -5px 10px #ffffff;
+    color: #1a3050;
+    transform: scale(0.97);
+}
+
+/* punto luminoso dentro del btn--nav */
+.btn-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: #dde3ef;
+    flex-shrink: 0;
+    transition: all 0.2s ease;
+}
+
+.btn--nav.active .btn-dot {
+    background: radial-gradient(circle at 35% 35%, #66a8ff, #0146C7);
+    box-shadow: 0 0 8px 3px rgba(1, 70, 199, 0.45), 0 0 16px 6px rgba(1, 70, 199, 0.15);
+}
+
+/* VARIANTE ROUND — botones circulares ayuda / reset */
+.btn--round {
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    color: #0146C7;
+    box-shadow: 7px 7px 14px #c8cfe0, -7px -7px 14px #ffffff;
+}
+
+.btn--round i {
+    font-size: 22px;
+    line-height: 1;
+}
+
+.btn--round:hover {
+    color: #003594;
+    box-shadow: 5px 5px 10px #c8cfe0, -5px -5px 10px #ffffff;
+}
+
+.btn--round:active {
+    box-shadow: inset 5px 5px 10px #c8cfe0, inset -5px -5px 10px #ffffff;
+}
+
+/* VARIANTE CATEGORIA — panel lateral info */
+.btn--categoria {
+    flex-direction: column;
+    gap: 6px;
+    padding: 14px 10px;
+    border-radius: 16px;
+    color: #6a7a90;
+    font-size: 11px;
+    font-weight: 500;
+    text-align: center;
+    line-height: 1.2;
+    box-shadow: 6px 6px 12px #c8cfe0, -6px -6px 12px #ffffff;
+}
+
+.btn--categoria i {
+    font-size: 20px;
+    line-height: 1;
+}
+
+.btn--categoria:hover { color: #0146C7; }
+
+.btn--categoria:active,
+.btn--categoria.active {
+    box-shadow: inset 4px 4px 8px #c8cfe0, inset -4px -4px 8px #ffffff;
+    color: #0146C7;
+    font-weight: 600;
+    transform: scale(0.97);
+}
+
+/* VARIANTE CLOSE — botón Entendido del modal */
+.btn--close {
+    background: #0146C7;
+    color: white;
+    padding: 12px 24px;
+    border-radius: 10px;
+    font-weight: bold;
+    width: 100%;
+    margin-top: 20px;
+    justify-content: center;
+    transition: background 0.2s ease;
+}
+
+.btn--close:hover { background: #003594; }

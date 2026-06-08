@@ -4,6 +4,7 @@ import { OrbitControls, Environment } from '@react-three/drei'
 import * as THREE from 'three'
 import Avion, { PUNTOS_INTERACTIVOS } from './Avion'
 import PanelLateral from './PanelLateral'
+import Button from './Button'
 
 const HOME_POSITION = [-345.06, 44.00, 0.64]
 
@@ -92,12 +93,12 @@ export default function ExplorarScene({ backgroundColor, setMostrarAyuda }) {
     return (
         <>
             <div className="side-buttons">
-                <button className="btn-round help" onClick={() => setMostrarAyuda(true)}>
+                <Button variant="round" onClick={() => setMostrarAyuda(true)}>
                     <i className="ri-info-i"></i>
-                </button>
-                <button className="btn-round reset" onClick={resetCamera}>
+                </Button>
+                <Button variant="round" onClick={resetCamera}>
                     <i className="ri-arrow-go-back-line"></i>
-                </button>
+                </Button>
             </div>
 
             <Canvas
