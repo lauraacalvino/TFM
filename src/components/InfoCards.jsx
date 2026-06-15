@@ -78,6 +78,7 @@ export default function InfoCards() {
                                     delay: index * 0.08
                                 }}
                             >
+                                {item.icono && <img src={item.icono} className="card-icon" alt="" />}
                                 <h2 className="card-title">{item.titulo}</h2>
                                 {item.descripcion && <p className="card-desc">{item.descripcion}</p>}
                                 <div className='card-content'>

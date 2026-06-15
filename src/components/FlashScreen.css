@@ -1,0 +1,14 @@
+.flash {
+    position: fixed;
+    inset: 0;
+    background: #F2F6FF;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 999999;
+}
+
+.flash-logo {
+    width: 280px;
+    max-width: 60vw;
+}
