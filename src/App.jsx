@@ -15,6 +15,11 @@ function App() {
   return (
     <div style={{ width: "100vw", height: "100vh", position: 'relative', overflow: 'hidden', backgroundColor: backgroundColor }}>
 
+      <div className="orientation-message">
+            <img src="/icons/logo.svg" alt="Anatomy of Flight" />
+            <p>Gira tu dispositivo para continuar</p>
+      </div>
+
       <FlashScreen onFinish={() => setFlashListo(true)} />
 
       {flashListo && (
