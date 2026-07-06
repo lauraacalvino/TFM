@@ -33,19 +33,6 @@ function App() {
           <AyudaModal mostrarAyuda={mostrarAyuda} setMostrarAyuda={setMostrarAyuda} />
         </>
       )}
-
-      <Interface seccion={seccion} setSeccion={setSeccion} />
-
-      {seccion === 'explorar' ? (
-        <ExplorarScene
-          backgroundColor={backgroundColor}
-          setMostrarAyuda={setMostrarAyuda}
-        />
-      ) : (
-        <InfoCards />
-      )}
-
-      <AyudaModal mostrarAyuda={mostrarAyuda} setMostrarAyuda={setMostrarAyuda} />
     </div>
   )
 }

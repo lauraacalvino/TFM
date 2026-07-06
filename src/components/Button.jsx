@@ -9,12 +9,12 @@ export default function Button ({
     className = '',
 }) {
     return (
-        <buttton
+        <button
             className = {`btn-base btn--${variant} ${active ? 'active' : ''} ${className}`}
             onClick = {onClick}
             title = {title}
         >
             {children}
-        </buttton>
+        </button>
     )
 }
