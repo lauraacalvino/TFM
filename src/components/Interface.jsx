@@ -1,16 +1,20 @@
 import './Interface.css'
 import Button from './Button'
+import { useLanguage } from './LanguageContext'
+
 
 export default function Interface({ seccion, setSeccion }) {
+    const { t } = useLanguage()
+    
     return (
         <div className="interface-container">
 
             {seccion === 'explorar' && (
-                <h1 className='title-360'>360°</h1>
+                <i className="ri-box-3-fill title-360"></i>
             )}
 
             {seccion === 'info' && (
-                <h1 className='title-info'>CONOCE MÁS Y RESUELVE TUS DUDAS</h1>
+                <h1 className='title-info'>{t('tituloInfo')}</h1>
             )}
 
             <div className='button-group'>
@@ -19,7 +23,7 @@ export default function Interface({ seccion, setSeccion }) {
                     active={seccion === 'explorar'}
                     onClick={() => setSeccion('explorar')}
                 >
-                    <span>Explorar</span>
+                    <span>{t('nav.explorar')}</span>
                     <div className="btn-dot" />
                 </Button>
 
@@ -28,7 +32,7 @@ export default function Interface({ seccion, setSeccion }) {
                     active={seccion === 'info'}
                     onClick={() => setSeccion('info')}
                 >
-                    <span>Info</span>
+                    <span>{t('nav.info')}</span>
                     <div className="btn-dot" />
                 </Button>
             </div>

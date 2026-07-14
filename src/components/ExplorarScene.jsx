@@ -5,11 +5,21 @@ import * as THREE from 'three'
 import Avion, { PUNTOS_INTERACTIVOS } from './Avion'
 import PanelLateral from './PanelLateral'
 import Button from './Button'
+import SelectorIdioma from './Selectoridioma'
 
 const HOME_POSITION = [-345.06, 44.00, 0.64]
 
 const tmpCamPos = new THREE.Vector3() //contenedor de tres dimensions
 const tmpTarget = new THREE.Vector3()
+
+function CameraLogger() {
+    useFrame((state) => {
+        console.log(
+            `[${state.camera.position.x.toFixed(2)}, ${state.camera.position.y.toFixed(2)}, ${state.camera.position.z.toFixed(2)}]`
+        );
+    });
+    return null;
+}
 
 function CameraFly({ puntoSeleccionado, volando, reseteando, controlsRef, onFlyEnd, onResetEnd }) {
     const { camera } = useThree()
@@ -99,6 +109,7 @@ export default function ExplorarScene({ backgroundColor, setMostrarAyuda }) {
                 <Button variant="round" onClick={resetCamera}>
                     <i className="ri-arrow-go-back-line"></i>
                 </Button>
+                <SelectorIdioma />
             </div>
 
             <Canvas
@@ -114,6 +125,8 @@ export default function ExplorarScene({ backgroundColor, setMostrarAyuda }) {
                     setPuntoSeleccionado={handleSeleccionar}
                     puntoSeleccionado={puntoSeleccionado}
                 />
+
+                {/*<CameraLogger />*/}
 
                 <CameraFly
                     puntoSeleccionado={puntoSeleccionado}

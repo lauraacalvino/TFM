@@ -3,8 +3,12 @@ import { infoData, categorias } from '../data/infoCards';
 import { motion, AnimatePresence } from "motion/react"
 import { useRef, useEffect, useState } from 'react';
 import Button from './Button'
+import { useLanguage } from './LanguageContext'
+
 
 export default function InfoCards() {
+    const { t } = useLanguage()
+
     const [categoriaActiva, setCategoriaActiva] = useState(categorias[0].id)
     const containerRef = useRef(null)
     const timeoutRef = useRef(null)
@@ -47,10 +51,10 @@ export default function InfoCards() {
                         variant="categoria"
                         active={categoriaActiva === cat.id}
                         onClick={() => setCategoriaActiva(cat.id)}
-                        title={cat.titulo}
+                        title={t(`categorias.${cat.id}`)}
                     >
                         <i className={cat.icono}></i>
-                        <span>{cat.titulo}</span>
+                        <span>{t(`categorias.${cat.id}`)}</span>
                     </Button>
                 ))}
             </div>
@@ -66,27 +70,40 @@ export default function InfoCards() {
                         exit={{ opacity: 0, x: -20 }}
                         transition={{ duration: 0.25, ease: 'easeOut' }}
                     >
-                        {cardsActivas.map((item, index) => (
-                            <motion.div
-                                key={item.id}
-                                className="info-card"
-                                initial={{ opacity: 0, y: 30, filter: 'blur(6px)' }}
-                                animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
-                                transition={{
-                                    duration: 0.4,
-                                    ease: [0.34, 1.56, 0.64, 1],
-                                    delay: index * 0.08
-                                }}
-                            >
-                                {item.icono && <img src={item.icono} className="card-icon" alt="" />}
-                                <h2 className="card-title">{item.titulo}</h2>
-                                {item.descripcion && <p className="card-desc">{item.descripcion}</p>}
-                                <div className='card-content'>
-                                    <p className='card-question'>{item.pregunta}</p>
-                                    <p className='card-answer'>{item.respuesta}</p>
-                                </div>
-                            </motion.div>
-                        ))}
+                        {cardsActivas.map((item, index) => {
+                            const textos = t(`cards.${item.id}`)
+                            return (
+                                <motion.div
+                                    key={item.id}
+                                    className="info-card"
+                                    initial={{ opacity: 0, y: 30, filter: 'blur(6px)' }}
+                                    animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
+                                    transition={{
+                                        duration: 0.4,
+                                        ease: [0.34, 1.56, 0.64, 1],
+                                        delay: index * 0.08
+                                    }}
+                                >
+                                    {item.icono && <img src={item.icono} className="card-icon" alt="" />}
+                                    <h2 className="card-title">{textos.titulo}</h2>
+                                    {textos.descripcion && <p className="card-desc">{textos.descripcion}</p>}
+
+                                    {textos.detalles
+                                        ? textos.detalles.map((det, i) => (
+                                            <div key={i} className='card-content'>
+                                                <p className='card-question'>{det.pregunta}</p>
+                                                <p className='card-answer'>{det.respuesta}</p>
+                                            </div>
+                                        ))
+                                        : (
+                                            <div className='card-content'>
+                                                <p className='card-question'>{textos.pregunta}</p>
+                                                <p className='card-answer'>{textos.respuesta}</p>
+                                            </div>
+                                        )}
+                                </motion.div>
+                            )
+                        })}
                     </motion.div>
                 </AnimatePresence>
             </div>

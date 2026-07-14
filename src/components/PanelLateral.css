@@ -1,7 +1,7 @@
 .panel-lateral {
     position: fixed;
     right: 24px;
-    top: 30%;
+    top: 50%;
     transform: translateY(-50%);
     z-index: 100;
     background: #F2F6FF;
@@ -13,7 +13,11 @@
     gap: 8px;
     align-items: center;
     width: 56px;
+    max-height: 90vh;
+    overflow-y: auto;
 }
+
+.panel-lateral::-webkit-scrollbar { display: none; }
 
 .panel-slot {
     width: 38px;
@@ -32,6 +36,7 @@
     transition: all 0.2s ease;
     border: none;
     outline: none;
+    flex-shrink: 0;
 }
 
 .panel-slot:hover {
@@ -39,13 +44,44 @@
     box-shadow: 5px 5px 10px #c8cfe0, -5px -5px 10px #ffffff;
 }
 
-.panel-slot:active {
-    transform: scale(0.95);
-}
+.panel-slot:active { transform: scale(0.95); }
 
 .panel-slot.active {
     background: linear-gradient(135deg, #1a6aff, #0146C7);
     color: white;
     box-shadow: inset 3px 3px 6px rgba(0, 0, 0, 0.15), inset -2px -2px 4px rgba(255, 255, 255, 0.1);
     font-weight: 500;
+}
+
+/* ── Responsive ── */
+@media screen and (max-height: 768px) {
+    .panel-lateral {
+        right: 16px;
+        padding: 12px 8px;
+        gap: 6px;
+        width: 48px;
+        border-radius: 18px;
+    }
+    .panel-slot {
+        width: 32px;
+        height: 32px;
+        font-size: 12px;
+        border-radius: 10px;
+    }
+}
+
+@media screen and (max-height: 667px) {
+    .panel-lateral {
+        right: 12px;
+        padding: 8px 6px;
+        gap: 4px;
+        width: 40px;
+        border-radius: 14px;
+    }
+    .panel-slot {
+        width: 28px;
+        height: 28px;
+        font-size: 11px;
+        border-radius: 8px;
+    }
 }

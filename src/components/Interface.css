@@ -15,17 +15,19 @@
 
 .title-360 {
     color: #0146C7;
+    opacity: 40%;
     font-size: 34px;
     font-weight: bold;
     pointer-events: auto;
+    margin-top: 0.8rem;
 }
 
 .title-info {
     position: relative;
     width: 100%;
     color: #0146C7;
-    padding: 20px 0 28px;
-    font-size: 42px;
+    padding: 16px 0 22px;
+    font-size: 36px;
     font-weight: 800;
     margin-top: 0;
     letter-spacing: 1px;
@@ -58,7 +60,7 @@
     justify-content: center;
     gap: 20px;
     pointer-events: auto;
-    padding: 20px 0 28px;
+    padding: 16px 0 22px;
     isolation: isolate;
 }
 
@@ -76,4 +78,35 @@
     mask-image: linear-gradient(to top, black 50%, transparent 100%);
     z-index: -1;
     pointer-events: none;
+}
+
+/* ── Responsive ── */
+@media screen and (max-height: 768px) {
+    .title-info {
+        font-size: 28px;
+        padding: 12px 0 16px;
+    }
+    .button-group {
+        padding: 12px 0 16px;
+        gap: 14px;
+    }
+    .title-360 {
+        font-size: 26px;
+        margin-top: 0.5rem;
+    }
+}
+
+@media screen and (max-height: 667px) {
+    .title-info {
+        font-size: 22px;
+        padding: 10px 0 12px;
+    }
+    .button-group {
+        padding: 10px 0 12px;
+        gap: 10px;
+    }
+    .title-360 {
+        font-size: 22px;
+        margin-top: 0.4rem;
+    }
 }

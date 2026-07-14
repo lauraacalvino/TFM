@@ -1,13 +1,17 @@
 import { motion, AnimatePresence } from 'framer-motion'
 import { infoData } from '../data/infoData'
-import './PuntoPopup.css'
+import { useLanguage } from './LanguageContext'
+import './Puntopopup.css'
 
 export default function PuntoPopup ({ puntoSeleccionado, onClose }) {
+    const { t } = useLanguage()
+
     const infoActual = infoData.find(item => item.id === puntoSeleccionado);
+    const textos = puntoSeleccionado ? t(`popups.${puntoSeleccionado}`) : null;
 
     return (
         <AnimatePresence>
-            {puntoSeleccionado && infoActual && (
+            {puntoSeleccionado && infoActual && textos && (
                 <motion.div
                     className="popup-overlay"
                     initial={{ opacity: 0 }}
@@ -23,13 +27,13 @@ export default function PuntoPopup ({ puntoSeleccionado, onClose }) {
                     >
 
                         <div className="popup-header">
-                            <h2 className="popup-title">{infoActual.titulo.toUpperCase()}</h2>
+                            <h2 className="popup-title">{textos.titulo.toUpperCase()}</h2>
                             <button className="popup-close" onClick={onClose}>×</button>
                         </div>
 
-                        <p className="popup-description">{infoActual.descripcion}</p>
+                        <p className="popup-description">{textos.descripcion}</p>
 
-                        {infoActual.detalles.map((det, i) => (
+                        {textos.detalles.map((det, i) => (
                             <div key={i} className="popup-detail">
                                 <p className="popup-question">{det.pregunta}</p>
                                 <p className="popup-answer">{det.respuesta}</p>

@@ -1,7 +1,7 @@
 import { useGLTF, Html } from '@react-three/drei'
 import { useEffect, useState } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
-import { infoData } from '../data/infoData'
+import { useLanguage } from './LanguageContext'
 import './Puntopopup.css'
 
 export const PUNTOS_INTERACTIVOS = [
@@ -22,6 +22,7 @@ export default function Avion({ setPuntoSeleccionado, puntoSeleccionado }) {
 
     const { scene } = useGLTF('/airplane5.glb')
     const [puntosOcultos, setPuntosOcultos] = useState({})
+    const { t } = useLanguage()
 
     useEffect(() => {
         scene.traverse((child) => {
@@ -44,8 +45,7 @@ export default function Avion({ setPuntoSeleccionado, puntoSeleccionado }) {
                 const punto = scene.getObjectByName(nombre)
                 const estaOculto = puntosOcultos[id]
                 const estaSeleccionado = Number(puntoSeleccionado) === id
-                const infoActual = infoData.find(item => item.id === id)
-
+                const textos = estaSeleccionado ? t(`popups.${id}`) : null
 
                 if (!punto) return null
 
@@ -62,7 +62,7 @@ export default function Avion({ setPuntoSeleccionado, puntoSeleccionado }) {
                             style={{ overflow: 'visible', pointerEvents: 'none' }}
                         >
                             <AnimatePresence>
-                                {estaSeleccionado && infoActual && (
+                                {estaSeleccionado && textos && (
                                     <motion.div
                                         className={clasePopup}
                                         initial={{ opacity: 0, scale: 0.9, y: -4 }}
@@ -72,16 +72,16 @@ export default function Avion({ setPuntoSeleccionado, puntoSeleccionado }) {
                                         style={{ pointerEvents: 'all' }}
                                     >
                                         <div className="popup-header">
-                                            <h2 className="popup-title">{infoActual.titulo.toUpperCase()}</h2>
+                                            <h2 className="popup-title">{textos.titulo?.toUpperCase()}</h2>
                                             <button
                                                 className="popup-close"
                                                 onClick={() => setPuntoSeleccionado(null)}
                                             >×</button>
                                         </div>
 
-                                        <p className="popup-description">{infoActual.descripcion}</p>
+                                        <p className="popup-description">{textos.descripcion}</p>
 
-                                        {infoActual.detalles.map((det, i) => (
+                                        {textos.detalles?.map((det, i) => (
                                             <div key={i} className="popup-detail">
                                                 <p className="popup-question">{det.pregunta}</p>
                                                 <p className="popup-answer">{det.respuesta}</p>
