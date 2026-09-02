@@ -19,7 +19,7 @@ function AppContent() {
     return (
         <>
             <div className="orientation-message">
-                <img src="/logo.svg" alt="Anatomy of Flight" />
+                <img src="/icons/logo.svg" alt="Anatomy of Flight" />
                 <p>{t('orientacion')}</p>
             </div>
             <div className="app-container" style={{ width: "100vw", height: "100vh", position: 'relative', overflow: 'hidden', backgroundColor }}>

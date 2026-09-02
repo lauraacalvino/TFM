@@ -88,7 +88,7 @@
     transform: scale(0.97);
 }
 
-/* ── Responsive ── */
+
 @media screen and (max-height: 768px) {
     .ayuda-modal {
         padding: 24px 28px 22px;

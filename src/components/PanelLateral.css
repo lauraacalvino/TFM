@@ -53,7 +53,7 @@
     font-weight: 500;
 }
 
-/* ── Responsive ── */
+
 @media screen and (max-height: 768px) {
     .panel-lateral {
         right: 16px;

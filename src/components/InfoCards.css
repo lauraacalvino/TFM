@@ -100,7 +100,7 @@
     opacity: 0.18;
 }
 
-/* ── Responsive ── */
+
 @media screen and (max-height: 768px) {
     .info-layout {
         padding-top: 80px;

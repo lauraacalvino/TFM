@@ -80,7 +80,7 @@
     pointer-events: none;
 }
 
-/* ── Responsive ── */
+
 @media screen and (max-height: 768px) {
     .title-info {
         font-size: 28px;

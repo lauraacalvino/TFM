@@ -110,7 +110,7 @@
 
 .btn--close:hover { background: #003594; }
 
-/* ── Responsive ── */
+
 @media screen and (max-height: 768px) {
     .btn--nav {
         padding: 12px 16px 12px 22px;
