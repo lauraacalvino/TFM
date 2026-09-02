@@ -1,16 +1,80 @@
-# React + Vite
+# ✈️ Anatomy of Flight
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Una experiencia web 3D interactiva que permite explorar la anatomía de un avión comercial, descubriendo cómo funciona cada una de sus partes mediante un modelo 3D navegable y contenido educativo.
 
-Currently, two official plugins are available:
+## 📖 Sobre el proyecto
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+**Anatomy of Flight** convierte un modelo 3D de avión en un recorrido guiado: el usuario puede rotar la nave, hacer clic sobre puntos interactivos repartidos por el fuselaje, las alas, los motores o la cola, y recibir una explicación clara (con preguntas frecuentes incluidas) de para qué sirve cada elemento y por qué está diseñado así.
 
-## React Compiler
+Además del modo de exploración 3D, el proyecto incluye una vista de tarjetas informativas a modo de resumen visual rápido de todas las partes del avión.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+### Características principales
 
-## Expanding the ESLint configuration
+- 🛩️ **Modelo 3D interactivo** del avión renderizado con Three.js / React Three Fiber, con cámara animada que vuela automáticamente hacia cada punto seleccionado.
+- 📍 **Puntos interactivos** (fuselaje, alas, motores, alerones, sensores Pitot, cola, APU, spoilers, flaps) con popups informativos y detalle en formato pregunta/respuesta.
+- 🗂️ **Vista de tarjetas** con toda la información organizada por categorías.
+- 🌍 **Soporte multilenguaje**: español, inglés, francés y alemán.
+- 🖼️ **Splash screen** de bienvenida y **modal de ayuda** para guiar al usuario.
+- 📱 Diseño responsive, con aviso de orientación para dispositivos móviles.
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## 🛠️ Stack tecnológico
+
+- [React 19](https://react.dev/) + [Vite](https://vite.dev/)
+- [Three.js](https://threejs.org/) vía [@react-three/fiber](https://github.com/pmndrs/react-three-fiber) y [@react-three/drei](https://github.com/pmndrs/drei)
+- [Motion](https://motion.dev/) (Framer Motion) para animaciones de interfaz
+
+## 🚀 Puesta en marcha
+
+Instala las dependencias:
+
+```bash
+npm install
+```
+
+Levanta el entorno de desarrollo:
+
+```bash
+npm run dev
+```
+
+Genera la build de producción:
+
+```bash
+npm run build
+```
+
+Previsualiza la build de producción localmente:
+
+```bash
+npm run preview
+```
+
+## 📁 Estructura del proyecto
+
+```
+src/
+├── components/
+│   ├── Avion.jsx           # Modelo 3D del avión y puntos interactivos
+│   ├── ExplorarScene.jsx   # Escena 3D (canvas, cámara, controles)
+│   ├── InfoCards.jsx       # Vista de tarjetas informativas
+│   ├── Puntopopup.jsx      # Popup informativo de cada punto
+│   ├── PanelLateral.jsx    # Panel lateral de navegación
+│   ├── Selectoridioma.jsx  # Selector de idioma
+│   ├── Interface.jsx       # Interfaz general / navegación entre secciones
+│   ├── AyudaModal.jsx      # Modal de ayuda
+│   ├── FlashScreen.jsx     # Pantalla de bienvenida
+│   └── LanguageContext.jsx # Contexto de internacionalización
+└── data/
+    ├── Translations.js     # Textos en es/en/fr/de
+    ├── infoCards.js        # Datos de la vista de tarjetas
+    └── infoData.js         # Identificadores de los puntos interactivos del avión
+```
+
+## 🌐 Idiomas disponibles
+
+- Español (es)
+- English (en)
+- Français (fr)
+- Deutsch (de)
+
+Los textos se gestionan de forma centralizada en `src/data/Translations.js` a través del contexto `LanguageContext`.
