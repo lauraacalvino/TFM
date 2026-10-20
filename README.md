@@ -23,31 +23,6 @@ Además del modo de exploración 3D, el proyecto incluye una vista de tarjetas i
 - [Three.js](https://threejs.org/) vía [@react-three/fiber](https://github.com/pmndrs/react-three-fiber) y [@react-three/drei](https://github.com/pmndrs/drei)
 - [Motion](https://motion.dev/) (Framer Motion) para animaciones de interfaz
 
-## 🚀 Puesta en marcha
-
-Instala las dependencias:
-
-```bash
-npm install
-```
-
-Levanta el entorno de desarrollo:
-
-```bash
-npm run dev
-```
-
-Genera la build de producción:
-
-```bash
-npm run build
-```
-
-Previsualiza la build de producción localmente:
-
-```bash
-npm run preview
-```
 
 ## 📁 Estructura del proyecto
 
